@@ -1,0 +1,77 @@
+\documentclass{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-0.5in}
+\setlength{\headsep}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\textheight}{9.5in}
+\renewcommand{\baselinestretch}{1.5}
+\usepackage{amsbsy}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\title{Probability Calculations \vspace{-3em}}
+\date{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\section{Question}
+Let's say there are $n$ people in a room. What is the probability that:
+    \begin{itemize}
+        \item At least two people share the same date of birth (event $A$)
+        \item No two people share the same date of birth (event $B$)
+        \item Exactly two people share the same date of birth (event $C$)
+    \end{itemize}
+
+\section{Assumptions}
+For the sake of simplicity, we make the following assumptions:
+    \begin{itemize}
+        \item There are 365 calendar days in the year.
+        \item No person is born on February 29
+    \end{itemize}
+The calculations can easily be adjusted if the above assumptions are not true.
+
+\section{Solution}
+Let's calculate the probability of event $B$ first. Since we assume that there are 365 days in the calendar year, if $n$ is greater than 365, then P(B) would be 1. Conversely, if $n$ is less than 2, then P(B) would be 0. For the case where $2 \leq n \le 365$:
+
+\noindent The first person can have their birthday on any of the 365 days. Since no two people can have their birthdays on the same day, the second person can only have their birthday on any of the remaining 365 days. Continuing in a similar way, the $n$th person can have their birthday on any of the remaining $365 - n + 1$ days.
+
+\noindent Multiplying these probabilities, we get the probability of event $B$:
+\begin{align}
+    P(B) & = \frac{365}{365} \times \frac{364}{365} \times \frac{363}{365} \times \cdots \times \frac{365 - n + 1}{365} \nonumber \\
+         & = \frac{365!}{(365 - n)! \cdot 365^{n}} \nonumber
+\end{align}
+
+\noindent Combining all possible cases, we get
+\begin{equation*}
+    P(B) = \begin{cases}
+        0 & ; ~ 0 \leq n < 2 \\
+        \frac{365!}{(365 - n)! \cdot 365^{n}} & ; ~ 2 \leq n \leq 365 \\
+        1 & ; ~ n > 365
+    \end{cases}
+\end{equation*}
+
+\noindent Events $A$ and $B$ are complements of each other. Thus, probability of event $A$ can be calculated using the relation:
+$$ P(A) = 1 - P(B) $$
+
+\noindent Next, we calculate the probability of event $C$. First we compute the probability that two people in the room have the same birthdate. The first person can have their birthday on any of the 365 days. The second person must have their birthday on the same day as the first person.
+$$ P(\text{two people share a birthday}) = \frac{365}{365} \times \frac{1}{365}$$
+
+\noindent Out of the remanining $n - 2$ people, no one can have their birth date as the first two people and no two people can have the same birthdate. This probability can be calculated as
+$$\frac{364}{365} \times \frac{363}{365} \times \cdots \frac{365 - n + 2}{365}$$
+
+\noindent To get the probability of event $C$, we multiply the product of the abover two probabilities with $\prescript{n}{}{C}_{2}$ to account for the number of two-person combinations in a group of $n$ people. Thus
+\begin{align*}
+    P(C) & = \prescript{n}{}{C}_{2} \times \frac{365}{365} \times \frac{1}{365} \times \frac{364}{365} \times \frac{363}{365} \times \cdots \frac{365 - n + 2}{365} \\
+         & = \prescript{n}{}{C}_{2} \times \frac{365!}{(365 - n + 1)! \cdot 365^{n}}
+\end{align*}
+
+\end{document}
