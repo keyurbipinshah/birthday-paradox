@@ -40,7 +40,7 @@ plt <- ggplot2::ggplot(data = df,
                                labels = c("p1" = "Prob. no two people\nhave the same birthday",
                                           "p3" = "Prob. exactly two people\nhave the same birthday",
                                           "p2" = "`Prob. at least two people\nhave the same birthday`"),
-                               guide = ggplot2::guide_legend(override.aes = list(alpha = 1))) +
+                               guide = ggplot2::guide_legend(override.aes = list(alpha = 1, size = 3))) +
   ggplot2::scale_x_continuous(breaks = seq(0, 400, by = 50))
 
 message("Saving visualisation")
