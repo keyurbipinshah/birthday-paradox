@@ -36,10 +36,11 @@ plt <- ggplot2::ggplot(data = df,
   ggplot2::theme(legend.position = "bottom",
                  legend.title = ggplot2::element_blank(),
                  legend.justification = c(0, 1)) +
-  ggplot2::scale_colour_hue(labels = c("p1" = "Prob. no two people\nhave the same birthday",
-                                       "p3" = "Prob. exactly two people\nhave the same birthday",
-                                       "p2" = "`Prob. at least two people\nhave the same birthday`"),
-                            guide = ggplot2::guide_legend(override.aes = list(alpha = 1))) +
+  ggplot2::scale_colour_manual(values = c("#01B8AA", "#374649", "#FD625E"),
+                               labels = c("p1" = "Prob. no two people\nhave the same birthday",
+                                          "p3" = "Prob. exactly two people\nhave the same birthday",
+                                          "p2" = "`Prob. at least two people\nhave the same birthday`"),
+                               guide = ggplot2::guide_legend(override.aes = list(alpha = 1))) +
   ggplot2::scale_x_continuous(breaks = seq(0, 400, by = 50))
 
 message("Saving visualisation")
